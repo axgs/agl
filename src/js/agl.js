@@ -162,9 +162,6 @@ export const agl = {
     },
 
     render: function () {
-        agl.cls(0, 0, 50);
-        agl.drawObjects();
-
         if (typeof agl.renderCallback == "function") {
             agl.renderCallback();
         }

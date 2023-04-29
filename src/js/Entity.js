@@ -1,9 +1,9 @@
-class Entity {
-    constructor() {
-        this.pos = { x: 0, y: 0 };
-        this.size = { width: 0, height: 0 };
-        this.source = { x: 0, y: 0 };
-        this.imageKey = "";
+export class Entity {
+    constructor(imgKey, x, y, width, height, sourceX, sourceY) {
+        this.pos = { x: x, y: y };
+        this.size = { width: width, height: height };
+        this.source = { x: sourceX, y: sourceY };
+        this.imageKey = imgKey;
     }
 
     setPos(x, y) {
@@ -52,5 +52,3 @@ class Entity {
     // update method must be implemented
     update() {}
 }
-
-export default Entity;
