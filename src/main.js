@@ -1,11 +1,11 @@
-import g from "./js/core";
-import Player from "./js/GameObjects/Player";
+import { agl } from "./js/agl";
 
 const images = [
     { id: "block", file: "block.png" },
     { id: "tiles1", file: "tiles.png" },
 ];
 
+// TODO:
 const sounds = [{ id: "snd1", file: "snd1.ogg" }];
 
 const objPlayer = {
@@ -15,16 +15,15 @@ const objPlayer = {
     imageKey: "player",
 };
 
-const p = new Player();
-p.update();
+agl.init("screen", 320, 256);
+agl.addPreloadImages(images);
 
-g.init("screen", 320, 256);
+agl.preload(() => {
+    const img = agl.getImage("tiles1");
+    console.log(img);
 
-g.addPreloadImages(images);
-
-g.preload(() => {
-    g.addObject(objPlayer);
-    g.startGame(update, render);
+    agl.addObject(objPlayer);
+    agl.startGame(update, render);
 });
 
 function update() {}

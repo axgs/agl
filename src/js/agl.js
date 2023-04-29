@@ -1,4 +1,4 @@
-const core = {
+export const agl = {
     score: 0,
     lives: 0,
     level: 0,
@@ -148,25 +148,25 @@ const core = {
        ### GAMELOOP                                                     ###
        ####################################################################*/
     gameLoop: function () {
-        core.update();
-        core.render();
-        window.requestAnimationFrame(core.gameLoop);
+        agl.update();
+        agl.render();
+        window.requestAnimationFrame(agl.gameLoop);
     },
 
     update: function () {
-        core.updateObjects();
+        agl.updateObjects();
 
-        if (typeof core.updateCallback == "function") {
-            core.updateCallback();
+        if (typeof agl.updateCallback == "function") {
+            agl.updateCallback();
         }
     },
 
     render: function () {
-        core.cls(0, 0, 50);
-        core.drawObjects();
+        agl.cls(0, 0, 50);
+        agl.drawObjects();
 
-        if (typeof core.renderCallback == "function") {
-            core.renderCallback();
+        if (typeof agl.renderCallback == "function") {
+            agl.renderCallback();
         }
     },
 
@@ -188,13 +188,13 @@ const core = {
     imgList: [],
     sfxList: [],
 
-    addPreloadImages(imageArray) {
+    addPreloadImages: function (imageArray) {
         imageArray.forEach((e) => {
             this.imageLoadList.push({ id: e.id, file: e.file });
         });
     },
 
-    preload(callback) {
+    preload: function (callback) {
         let loadCount = this.imageLoadList.length;
 
         this.imageLoadList.forEach((e) => {
@@ -208,6 +208,14 @@ const core = {
             };
             img.src = this.imagePath + e.file;
         });
+    },
+
+    getImage: function (id) {
+        for (let item of this.imgList) {
+            if (item.id == id) {
+                return item;
+            }
+        }
     },
 
     /* ####################################################################
@@ -331,5 +339,3 @@ const core = {
         }
     },
 };
-
-export default core;
