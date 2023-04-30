@@ -12,13 +12,27 @@ export class Sprite {
      * @param sourceY
      */
     constructor(imgKey, x, y, width, height, sourceX, sourceY) {
-        this.active = true;
+        this.enable();
         this.pos = {x: x, y: y};
         this.size = {width: width, height: height};
         this.source = {x: sourceX, y: sourceY};
         this.image = Agl.getImage(imgKey);
         this.speed = {x: 0, y: 0};
         this.direction = {x: 0, y: 0};
+    }
+
+    /**
+     * enable sprite for updating & rendering
+     */
+    enable() {
+        this.active = true;
+    }
+
+    /**
+     * disable sprite for updating & rendering
+     */
+    disable() {
+        this.active = false;
     }
 
     /**

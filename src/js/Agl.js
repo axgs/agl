@@ -23,12 +23,6 @@ export class Agl {
         left: true, right: true, up: true, down: true, fire: true,
     };
 
-    static tileWidth = 16;
-    static tileHeight = 16;
-    static tileSheetWidth = 320;
-    static tileSheetHeight = 256;
-    static tilePosTable = [];
-
     /**
      * init game
      * @param canvasId
@@ -40,7 +34,6 @@ export class Agl {
         this.setCanvasSize(canvasId, width, height);
         this.initKeyboardHandler();
         this.resetKeyboardButtons();
-        this.initTiles();
 
         this.imageLoadList = [];
         this.imgList = [];
@@ -265,63 +258,5 @@ export class Agl {
 
     static getKeyboardFire() {
         return this.keyboardButtons.fire;
-    }
-
-    /**
-     * set default values for the tiles
-     */
-    static initTiles() {
-        this.setTileSize(16, 16);
-        this.setTileSheetSize(320, 256);
-        this.calcTilePosTable();
-    }
-
-    /**
-     * set tile size
-     * @param width
-     * @param height
-     */
-    static setTileSize(width, height) {
-        this.tileWidth = width;
-        this.tileHeight = height;
-    }
-
-    /**
-     * get tile size
-     * @returns {number[]}
-     */
-    static getTileSize() {
-        return [this.tileWidth, this.tileHeight];
-    }
-
-    /**
-     * set size of the tilesheet image
-     * @param width
-     * @param height
-     */
-    static setTileSheetSize(width, height) {
-        this.setTileSheetWidt = width;
-        this.setTileSheetHeight = height;
-    }
-
-    /**
-     * get size of the tilesheet image
-     * @returns {(number)[]}
-     */
-    static getTileSheetSize() {
-        return [this.tileSheetWidth, this.tileSheetHeight];
-    }
-
-    /**
-     * calculate each tile position in the tilesheet image
-     * depending on tile size and tilesheet image size
-     */
-    static calcTilePosTable() {
-        this.tilePosTable = [];
-        for (let y = 0; y < this.tileSheetHeight / this.tileHeight; y++) {
-            for (let x = 0; x < this.tileSheetWidth / this.tileWidth; x++) {
-                this.tilePosTable.push(x * this.tileWidth, y * this.tileHeight);
-            }
-        }
     }
 }

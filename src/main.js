@@ -1,7 +1,9 @@
 import {Agl} from "./js/Agl.js";
 import {Player} from "./js/Sprites/Player.js";
+import {Tilemap} from "./js/Tilemap.js";
 
 let player;
+let tilemap;
 
 /**
  * images to be preloaded
@@ -22,6 +24,8 @@ const sounds = [{id: "snd1", file: "snd1.ogg"}];
 Agl.init("screen", 320, 256);
 Agl.addPreloadImages(images);
 Agl.preload(() => {
+    tilemap=new Tilemap();
+
     initSprites();
     Agl.startGame(update, render);
 });
