@@ -66,9 +66,9 @@ export class Tilemap {
      */
     getTileSheetPos(tileNr) {
         if (tileNr >= 0 && tileNr < this.maxTiles) {
-            return [{x:this.tilePosTable[tileNr][0].x, y:this.tilePosTable[tileNr][0].y}];
+            return [this.tilePosTable[tileNr][0].x, this.tilePosTable[tileNr][0].y];
         } else {
-            return [{x: 0, y: 0}];
+            return [0, 0];
         }
     }
 }
