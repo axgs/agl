@@ -1,26 +1,54 @@
-import {Entity} from "./js/Entity.js";
-import Agl from "./js/Agl.js";
+import {Agl} from "./js/Agl.js";
+import {Player} from "./js/Sprites/Player.js";
 
-const p = new Entity("block", 100, 50, 16, 16, 8, 4);
+let player;
 
+/**
+ * images to be preloaded
+ */
 const images = [
     {id: "block", file: "block.png"},
     {id: "tiles1", file: "tiles.png"},
 ];
 
-// TODO:
+/**
+ * TODO: sounds to be preloaded
+ */
 const sounds = [{id: "snd1", file: "snd1.ogg"}];
 
+/**
+ * init game and preload all data
+ */
 Agl.init("screen", 320, 256);
 Agl.addPreloadImages(images);
 Agl.preload(() => {
-    const img = Agl.getImage("tiles1");
-    console.log(img);
+    initSprites();
     Agl.startGame(update, render);
 });
 
-function update() {
+function initSprites() {
+    player = new Player();
 }
 
+/**
+ * user update callback
+ */
+function update() {
+    updateSprites();
+}
+
+function updateSprites() {
+    player.update();
+}
+
+/**
+ * user render callback
+ */
 function render() {
+    Agl.cls(0, 0, 100);
+    renderSprites();
+}
+
+function renderSprites() {
+    player.render();
 }
