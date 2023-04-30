@@ -1,24 +1,26 @@
-import { agl } from "./js/agl";
-import { Entity } from "./js/Entity";
+import {Entity} from "./js/Entity.js";
+import Agl from "./js/Agl.js";
 
 const p = new Entity("block", 100, 50, 16, 16, 8, 4);
 
 const images = [
-    { id: "block", file: "block.png" },
-    { id: "tiles1", file: "tiles.png" },
+    {id: "block", file: "block.png"},
+    {id: "tiles1", file: "tiles.png"},
 ];
 
 // TODO:
-const sounds = [{ id: "snd1", file: "snd1.ogg" }];
+const sounds = [{id: "snd1", file: "snd1.ogg"}];
 
-agl.init("screen", 320, 256);
-agl.addPreloadImages(images);
-
-agl.preload(() => {
-    const img = agl.getImage("tiles1");
-    agl.startGame(update, render);
+Agl.init("screen", 320, 256);
+Agl.addPreloadImages(images);
+Agl.preload(() => {
+    const img = Agl.getImage("tiles1");
+    console.log(img);
+    Agl.startGame(update, render);
 });
 
-function update() {}
+function update() {
+}
 
-function render() {}
+function render() {
+}

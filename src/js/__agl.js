@@ -1,4 +1,4 @@
-export const agl = {
+export const __agl = {
     score: 0,
     lives: 0,
     level: 0,
@@ -7,11 +7,6 @@ export const agl = {
     height: 0,
 
     currentState: null,
-
-    /* ####################################################################
-       ### OBJECTS                                                      ###
-       ####################################################################*/
-
     objectList: [],
 
     addObject: function (obj) {
@@ -148,22 +143,22 @@ export const agl = {
        ### GAMELOOP                                                     ###
        ####################################################################*/
     gameLoop: function () {
-        agl.update();
-        agl.render();
-        window.requestAnimationFrame(agl.gameLoop);
+        __agl.update();
+        __agl.render();
+        window.requestAnimationFrame(__agl.gameLoop);
     },
 
     update: function () {
-        agl.updateObjects();
+        __agl.updateObjects();
 
-        if (typeof agl.updateCallback == "function") {
-            agl.updateCallback();
+        if (typeof __agl.updateCallback == "function") {
+            __agl.updateCallback();
         }
     },
 
     render: function () {
-        if (typeof agl.renderCallback == "function") {
-            agl.renderCallback();
+        if (typeof __agl.renderCallback == "function") {
+            __agl.renderCallback();
         }
     },
 
@@ -214,10 +209,6 @@ export const agl = {
             }
         }
     },
-
-    /* ####################################################################
-       ### INPUT: KEYBORD                                               ###
-       ####################################################################*/
 
     keyboardButtons: {
         left: true,
