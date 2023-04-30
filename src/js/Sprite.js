@@ -1,6 +1,6 @@
 import {Agl} from "./Agl.js";
 
-export class Entity {
+export class Sprite {
     /**
      * constructor
      * @param imgKey
@@ -17,6 +17,8 @@ export class Entity {
         this.size = {width: width, height: height};
         this.source = {x: sourceX, y: sourceY};
         this.image = Agl.getImage(imgKey);
+        this.speed = {x: 0, y: 0};
+        this.direction = {x: 0, y: 0};
     }
 
     /**
@@ -27,6 +29,14 @@ export class Entity {
     setPos(x, y) {
         this.pos.x = x;
         this.pos.y = y;
+    }
+
+    /**
+     * get position values for x & y
+     * @returns {*[]}
+     */
+    getPos() {
+        return [this.pos.x, this.pos.y];
     }
 
     /**
@@ -102,11 +112,60 @@ export class Entity {
     }
 
     /**
+     * set x value for direction
+     * @param value
+     */
+    setDirectionX(value) {
+        this.direction.x = value;
+    }
+
+    /**
+     * set y value for direction
+     * @param value
+     */
+    setDirectionY(value) {
+        this.direction.y = value;
+    }
+
+    /**
+     * set direction values for x & y
+     */
+    setDirection(x, y) {
+        this.direction.x = x;
+        this.direction.y = y;
+    }
+
+    /**
+     * get direction values for x & y
+     * @returns {number[]}
+     */
+    getDirection() {
+        return [this.direction.x, this.direction.y];
+    }
+
+    /**
+     * set speed for x & y values
+     * @param x
+     * @param y
+     */
+    setSpeed(x, y) {
+        this.speed.x = x;
+        this.speed.y = y;
+    }
+
+    /**
+     * get speed values for x & y
+     * @returns {number[]}
+     */
+    getSpeed() {
+        return [this.speed.x, this.speed.y];
+    }
+
+    /**
      * update method
      * must be implemented, overwritten
      */
     update() {
-        console.log("default entity update method");
     }
 
     /**
