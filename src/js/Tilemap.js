@@ -1,16 +1,39 @@
 import {Agl} from "./Agl.js";
 
 export class Tilemap {
-    constructor() {
+    constructor(tilemapData) {
+        this.pos = {x: 0, y: 0};
         this.tileSize = {width: 16, height: 16};
         this.tileSheetSize = {width: 320, height: 256};
+        this.screenSize = {width: 320, height: 256};
+
         this.tilePosTable = null;
         this.maxTiles = 0;
-        this.tilesColumn = (this.tileSheetSize.width / this.tileSize.width);
-        this.tilesRow = (this.tileSheetSize.height / this.tileSize.height);
+        this.tilesColumn = (this.screenSize.width / this.tileSize.width);
+        this.tilesRow = (this.screenSize.height / this.tileSize.height);
         this.maxTiles = this.tilesColumn * this.tilesRow;
         this.tileSheetImage = Agl.getImage("tiles1");
         this.calcTilePosTable();
+
+        this.tilemapData = tilemapData.data.slice();
+        this.size = {width: tilemapData.width, height: tilemapData.height};
+    }
+
+    /**
+     * set position of the tilemap
+     * @param x
+     * @param y
+     */
+    setPos(x, y) {
+        this.pos = {x: x, y: y};
+    }
+
+    /**
+     * get position of the tilemap
+     * @returns {number[]}
+     */
+    getPos() {
+        return [this.pos.x, this.pos.y];
     }
 
     /**
