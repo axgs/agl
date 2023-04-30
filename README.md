@@ -3,10 +3,4 @@
 another game library
 (simple javascript library)
 
-requires:
-<br><br>
-node installed
-
-<code>npm install</code><br>
-<code>npm run dev</code><br>
-<code>npm run build</code><br>
+a simple prototype of a minimalistic JavaScript library to make 2D game development a little bit easier and to remove repetitive tasks.
