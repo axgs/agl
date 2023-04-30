@@ -1,10 +1,15 @@
-export class Tilemap {
+import {Agl} from "./Agl.js";
 
+export class Tilemap {
     constructor() {
         this.tileSize = {width: 16, height: 16};
         this.tileSheetSize = {width: 320, height: 256};
         this.tilePosTable = null;
         this.maxTiles = 0;
+        this.tilesColumn = (this.tileSheetSize.width / this.tileSize.width);
+        this.tilesRow = (this.tileSheetSize.height / this.tileSize.height);
+        this.maxTiles = this.tilesColumn * this.tilesRow;
+        this.tileSheetImage = Agl.getImage("tiles1");
         this.calcTilePosTable();
     }
 
@@ -48,7 +53,6 @@ export class Tilemap {
      * calculate each tile-position within the tilesheet image
      */
     calcTilePosTable() {
-        this.maxTiles = (this.tileSheetSize.height / this.tileSize.height) * (this.tileSheetSize.width / this.tileSize.width);
         this.tilePosTable = [];
 
         for (let y = 0; y < this.tileSheetSize.height / this.tileSize.height; y++) {
@@ -69,6 +73,22 @@ export class Tilemap {
             return [this.tilePosTable[tileNr][0].x, this.tilePosTable[tileNr][0].y];
         } else {
             return [0, 0];
+        }
+    }
+
+    /**
+     * render tilemap
+     */
+    render() {
+        for (let y = 0; y < this.tilesRow; y++) {
+            for (let x = 0; x < this.tilesColumn; x++) {
+                const tileNr = 1;
+
+                if (tileNr > 0) {
+                    const [tx, ty] = this.getTileSheetPos(tileNr);
+                    Agl.drawSubImageRect(this.tileSheetImage, x * this.tileSize.width, y * this.tileSize.height, this.tileSize.width, this.tileSize.height, tx, ty);
+                }
+            }
         }
     }
 }

@@ -50,6 +50,7 @@ function updateSprites() {
  */
 function render() {
     Agl.cls(0, 0, 100);
+    tilemap.render();
     renderSprites();
 }
 
