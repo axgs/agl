@@ -126,7 +126,7 @@ export class Agl {
      * simple image preloader
      * @param callback
      */
-    static preload(callback) {
+    static preloadImages(callback) {
         this.preloadMessage();
 
         setTimeout(() => {

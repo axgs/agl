@@ -34,7 +34,7 @@ const sounds = [{id: "snd1", file: "snd1.ogg"}];
  */
 Agl.init("screen", gameWidth, gameHeight);
 Agl.addPreloadImages(images);
-Agl.preload(() => {
+Agl.preloadImages(() => {
     tilemap = new Tilemap(tileMapDataLevel1, "tiles1");
     font6x7 = Agl.getImage("font6x7");
     initSprites();
