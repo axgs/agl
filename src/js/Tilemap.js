@@ -103,13 +103,20 @@ export class Tilemap {
      * render tilemap
      */
     render() {
-        for (let y = 0; y < this.tilesRow; y++) {
-            for (let x = 0; x < this.tilesColumn; x++) {
-                const tileNr = 1;
+        const softScrollX = this.pos.x % this.tileSize.width;
+        const softScrollY = this.pos.y % this.tileSize.height;
 
+        for (let y = 0; y < this.tilesRow + 1; y++) {
+            for (let x = 0; x < this.tilesColumn + 1; x++) {
+                const xm = x + Math.floor(this.pos.x / this.tileSize.width);
+                const ym = (y + Math.floor(this.pos.y / this.tileSize.height)) * this.size.width;
+                const tileNr = this.tilemapData[xm + ym];
                 if (tileNr > 0) {
-                    const [tx, ty] = this.getTileSheetPos(tileNr);
-                    Agl.drawSubImageRect(this.tileSheetImage, x * this.tileSize.width, y * this.tileSize.height, this.tileSize.width, this.tileSize.height, tx, ty);
+                    const [tx, ty] = this.getTileSheetPos(tileNr - 1);
+                    Agl.drawSubImageRect(this.tileSheetImage,
+                        (x * this.tileSize.width) - softScrollX,
+                        (y * this.tileSize.height) - softScrollY,
+                        this.tileSize.width, this.tileSize.height, tx, ty);
                 }
             }
         }
