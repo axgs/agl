@@ -116,11 +116,12 @@ export class Agl {
      * display preload message
      */
     static preloadMessage() {
-        this.cls(0,0,100);
-        this.ctx.font = "24px monospace";
+        this.cls(0, 0, 100);
+        this.ctx.font = "16px Arial";
         this.ctx.fillStyle = "#ff0";
-        this.ctx.fillText("LOADING", this.width * 0.5 - 42, this.height * 0.5);
+        this.ctx.fillText("LOADING", this.width * 0.39, this.height * 0.4);
     }
+
     /**
      * simple image preloader
      * @param callback
@@ -202,6 +203,23 @@ export class Agl {
      */
     static drawSubImageRect(img, x, y, width, height, sourceX, sourceY) {
         this.ctx.drawImage(img, sourceX, sourceY, width, height, Math.floor(x), Math.floor(y), width, height);
+    }
+
+    /**
+     * draw text from spritesheet font
+     * @param img
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param text
+     */
+    static drawText(img, x, y, width, height, text) {
+        for (let i = 0; i < text.length; i++) {
+            let code = text.charCodeAt(i) - 33;
+            this.drawSubImageRect(img, x, y, width, height, code * width, 0);
+            x += width;
+        }
     }
 
     /**
