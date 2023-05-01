@@ -113,24 +113,37 @@ export class Agl {
     }
 
     /**
+     * display preload message
+     */
+    static preloadMessage() {
+        this.cls(0,0,100);
+        this.ctx.font = "24px monospace";
+        this.ctx.fillStyle = "#ff0";
+        this.ctx.fillText("LOADING", this.width * 0.5 - 42, this.height * 0.5);
+    }
+    /**
      * simple image preloader
      * @param callback
      */
     static preload(callback) {
-        let loadCount = this.imageLoadList.length;
+        this.preloadMessage();
 
-        this.imageLoadList.forEach((e) => {
-            const img = new Image();
-            this.imgList.push({id: e.id, image: img});
-            img.onload = function () {
-                loadCount--;
-                if (loadCount < 1) {
-                    callback();
-                }
-            };
+        setTimeout(() => {
+            let loadCount = this.imageLoadList.length;
 
-            img.src = this.imagePath + e.file;
-        });
+            this.imageLoadList.forEach((e) => {
+                const img = new Image();
+                this.imgList.push({id: e.id, image: img});
+                img.onload = function () {
+                    loadCount--;
+                    if (loadCount < 1) {
+                        callback();
+                    }
+                };
+
+                img.src = this.imagePath + e.file;
+            });
+        }, 500);
     }
 
     /**

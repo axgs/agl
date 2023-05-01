@@ -20,6 +20,7 @@ let tilemap;
 const images = [
     {id: "block", file: "block.png"},
     {id: "tiles1", file: "tiles.png"},
+    {id:"font6x7", file: "font6x7.png"}
 ];
 
 /**
@@ -33,8 +34,7 @@ const sounds = [{id: "snd1", file: "snd1.ogg"}];
 Agl.init("screen", gameWidth, gameHeight);
 Agl.addPreloadImages(images);
 Agl.preload(() => {
-    tilemap = new Tilemap(tileMapDataLevel1);
-
+    tilemap = new Tilemap(tileMapDataLevel1, "tiles1");
     initSprites();
     Agl.startGame(update, render);
 });

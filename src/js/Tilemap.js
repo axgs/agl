@@ -1,7 +1,7 @@
 import {Agl} from "./Agl.js";
 
 export class Tilemap {
-    constructor(tilemapData) {
+    constructor(tilemapData, imageId) {
         this.pos = {x: 0, y: 0};
         this.tileSize = {width: 16, height: 16};
         this.tileSheetSize = {width: 320, height: 256};
@@ -12,7 +12,7 @@ export class Tilemap {
         this.tilesColumn = (this.screenSize.width / this.tileSize.width);
         this.tilesRow = (this.screenSize.height / this.tileSize.height);
         this.maxTiles = this.tilesColumn * this.tilesRow;
-        this.tileSheetImage = Agl.getImage("tiles1");
+        this.tileSheetImage = Agl.getImage(imageId);
         this.calcTilePosTable();
 
         this.tilemapData = tilemapData.data.slice();
@@ -103,8 +103,8 @@ export class Tilemap {
      * render tilemap
      */
     render() {
-        const softScrollX = this.pos.x % this.tileSize.width;
-        const softScrollY = this.pos.y % this.tileSize.height;
+        const softScrollX = Math.floor(this.pos.x % this.tileSize.width);
+        const softScrollY = Math.floor(this.pos.y % this.tileSize.height);
 
         for (let y = 0; y < this.tilesRow + 1; y++) {
             for (let x = 0; x < this.tilesColumn + 1; x++) {
@@ -119,6 +119,36 @@ export class Tilemap {
                         this.tileSize.width, this.tileSize.height, tx, ty);
                 }
             }
+        }
+    }
+
+    /**
+     * get tile-nr. from x/y screen-position
+     * @param x
+     * @param y
+     * @returns {number}
+     */
+    getTileAt(x, y) {
+        let tileNr = -1;
+        const xm = Math.floor(x / this.tileSize.width);
+        const ym = (Math.floor(y / this.tileSize.height));
+        if (xm >= 0 && xm < this.size.width && ym >= 0 && ym < this.size.height) {
+            tileNr = this.tilemapData[xm + (ym * this.size.width)];
+        }
+        return tileNr;
+    }
+
+    /**
+     * set tile-nr at x/y screen-position
+     * @param tileNr
+     * @param x
+     * @param y
+     */
+    setTileAt(tileNr, x, y) {
+        const xm = Math.floor(x / this.tileSize.width);
+        const ym = (Math.floor(y / this.tileSize.height));
+        if (xm >= 0 && xm < this.size.width && ym >= 0 && ym < this.size.height) {
+            this.tilemapData[xm + (ym * this.size.width)] = tileNr;
         }
     }
 }
