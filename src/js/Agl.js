@@ -130,14 +130,14 @@ export class Agl {
         this.preloadMessage();
 
         setTimeout(() => {
-            let loadCount = this.imageLoadList.length;
+            let imageFilesToLoad = this.imageLoadList.length;
 
             this.imageLoadList.forEach((e) => {
                 const img = new Image();
                 this.imgList.push({id: e.id, image: img});
                 img.onload = function () {
-                    loadCount--;
-                    if (loadCount < 1) {
+                    imageFilesToLoad--;
+                    if (imageFilesToLoad     < 1) {
                         callback();
                     }
                 };
