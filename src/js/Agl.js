@@ -137,7 +137,7 @@ export class Agl {
                 this.imgList.push({id: e.id, image: img});
                 img.onload = function () {
                     imageFilesToLoad--;
-                    if (imageFilesToLoad     < 1) {
+                    if (imageFilesToLoad < 1) {
                         callback();
                     }
                 };
