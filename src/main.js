@@ -33,18 +33,24 @@ Agl.init("screen", 320, 256);
 Agl.addPreloadImages(images);
 
 Agl.preloadImages(() => {
+    loadTilemaps();
     tilemap = new Tilemap(tileMapDataLevel1, "tiles1");
     font6x7 = Agl.getImage("font6x7");
     initSprites();
     Agl.startGame(update, render);
 });
 
-(async function() {
+/**
+ * load tiled tilemap data
+ * @returns {Promise<void>}
+ */
+async function loadTilemaps() {
     tmxData = await Agl.loadTMX("level1.tmx");
-    console.log(tmxData);
-})();
+}
 
-
+/**
+ * init sprites
+ */
 function initSprites() {
     player = new Player();
 }
@@ -56,6 +62,9 @@ function update() {
     updateSprites();
 }
 
+/**
+ * update all game sprites
+ */
 function updateSprites() {
     player.update();
 }
@@ -71,6 +80,9 @@ function render() {
 
 }
 
+/**
+ * render all game sprites
+ */
 function renderSprites() {
     player.render();
 }
