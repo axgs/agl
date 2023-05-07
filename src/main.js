@@ -14,6 +14,7 @@ let player;
 // game background, fonts etc.
 let tilemap;
 let font6x7;
+let tmxData;
 
 // images for preloading
 const images = [
@@ -37,6 +38,12 @@ Agl.preloadImages(() => {
     initSprites();
     Agl.startGame(update, render);
 });
+
+(async function() {
+    tmxData = await Agl.loadTMX("level1.tmx");
+    console.log(tmxData);
+})();
+
 
 function initSprites() {
     player = new Player();

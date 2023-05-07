@@ -11,8 +11,10 @@ export class Agl {
     static currentState;
     static updateCallback;
     static renderCallback;
+
     static imagePath = "data/img/";
     static soundPath = "data/snd/";
+    static tiledPath = "data/tiled/";
     static imageLoadList = [];
     static soundLoadList = [];
 
@@ -289,5 +291,22 @@ export class Agl {
 
     static getKeyboardFire() {
         return this.keyboardButtons.fire;
+    }
+
+    static async loadTMX(filename) {
+        const res = await fetch(this.tiledPath + filename);
+        const data = await res.text();
+        return data;
+        /*
+            .then((response) => response.text())
+            .then(data => {
+                const xmlParser = new DOMParser();
+                const xmlData=xmlParser.parseFromString(data,"application/xml");
+                console.log(xmlData);
+                return xmlData;
+            }).catch((error) => {
+                console.log("error loading");
+            });
+         */
     }
 }

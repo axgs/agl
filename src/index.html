@@ -7,6 +7,10 @@
         <title>AGL - another game library</title>
 
         <style>
+            html {
+                font-size: 16px;
+            }
+
             body {
                 margin: 0;
                 box-sizing: border-box;
@@ -17,9 +21,11 @@
             .game {
                 display: flex;
                 justify-content: center;
+                margin-top: 4rem;
             }
+
             canvas {
-                width: 75%;
+                width: 50%;
                 height: auto;
                 image-rendering: pixelated;
             }
@@ -29,7 +35,7 @@
         <!-- canvas for the game -->
         <div class="game">
             <canvas id="screen">
-                your browser does not support HTML5 canvas, sorry
+                sorry, your browser does not support HTML5 canvas.
             </canvas>
         </div>
 
