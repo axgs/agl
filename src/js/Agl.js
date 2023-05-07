@@ -297,16 +297,5 @@ export class Agl {
         const res = await fetch(this.tiledPath + filename);
         const data = await res.text();
         return data;
-        /*
-            .then((response) => response.text())
-            .then(data => {
-                const xmlParser = new DOMParser();
-                const xmlData=xmlParser.parseFromString(data,"application/xml");
-                console.log(xmlData);
-                return xmlData;
-            }).catch((error) => {
-                console.log("error loading");
-            });
-         */
     }
 }
